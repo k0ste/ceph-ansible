@@ -173,7 +173,7 @@ def run_module():
         state=dict(type='str', required=False,
                    choices=['present', 'absent'], default='present'),
         stripe_unit=dict(type='str', required=False),
-        plugin=dict(type='str', required=False, default='jerasure'),
+        plugin=dict(type='str', required=False, default='isa'),
         k=dict(type='str', required=False),
         m=dict(type='str', required=False),
         d=dict(type='str', required=False),

@@ -94,7 +94,7 @@ class TestCephEcProfile(object):
         m_fail_json.side_effect = ca_test_common.fail_json
         m_exec_command.return_value = (0,
                                        ['ceph', 'osd', 'erasure-code-profile', 'get', 'foo', '--format', 'json'],
-                                       '{"crush-device-class":"","crush-failure-domain":"host","crush-root":"default","jerasure-per-chunk-alignment":"false","k":"2","m":"4","plugin":"jerasure","stripe_unit":"32","technique":"reed_sol_van","w":"8"}',  # noqa: E501
+                                       '{"crush-device-class":"","crush-failure-domain":"host","crush-root":"default","jerasure-per-chunk-alignment":"false","k":"2","m":"4","plugin":"isa","stripe_unit":"32","technique":"reed_sol_van","w":"8"}',  # noqa: E501
                                        '')
 
         with pytest.raises(ca_test_common.AnsibleExitJson) as r:
@@ -103,7 +103,7 @@ class TestCephEcProfile(object):
         result = r.value.args[0]
         assert result['changed']
         assert result['cmd'] == ['ceph', 'osd', 'erasure-code-profile', 'get', 'foo', '--format', 'json']
-        assert result['stdout'] == '{"crush-device-class":"","crush-failure-domain":"host","crush-root":"default","jerasure-per-chunk-alignment":"false","k":"2","m":"4","plugin":"jerasure","stripe_unit":"32","technique":"reed_sol_van","w":"8"}'  # noqa: E501
+        assert result['stdout'] == '{"crush-device-class":"","crush-failure-domain":"host","crush-root":"default","jerasure-per-chunk-alignment":"false","k":"2","m":"4","plugin":"isa","stripe_unit":"32","technique":"reed_sol_van","w":"8"}'  # noqa: E501
         assert not result['stderr']
         assert result['rc'] == 0
 
@@ -122,7 +122,7 @@ class TestCephEcProfile(object):
         m_exec_command.side_effect = [
                                        (0,
                                         ['ceph', 'osd', 'erasure-code-profile', 'get', 'foo', '--format', 'json'],
-                                        '{"crush-device-class":"","crush-failure-domain":"host","crush-root":"default","jerasure-per-chunk-alignment":"false","k":"2","m":"4","plugin":"jerasure","stripe_unit":"32","technique":"reed_sol_van","w":"8"}',  # noqa: E501
+                                        '{"crush-device-class":"","crush-failure-domain":"host","crush-root":"default","jerasure-per-chunk-alignment":"false","k":"2","m":"4","plugin":"isa","stripe_unit":"32","technique":"reed_sol_van","w":"8"}',  # noqa: E501
                                         ''),
                                        (0,
                                         ['ceph', 'osd', 'erasure-code-profile', 'set', 'foo', 'k=2', 'm=6', 'stripe_unit=32', '--force'],
